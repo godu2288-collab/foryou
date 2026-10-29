@@ -2,430 +2,504 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Для тебя ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HYESOSPROJECT</title>
     <style>
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            -webkit-tap-highlight-color: transparent;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
         }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            background: #000;
+            color: #fff;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-            overflow-x: hidden;
-            overflow-y: auto;
-            position: relative;
-        }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.96);
-            border-radius: 25px;
-            padding: 25px 20px;
-            box-shadow: 0 15px 35px rgba(255, 75, 110, 0.2);
-            text-align: center;
-            max-width: 380px;
-            width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            position: relative;
-            z-index: 10;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            margin: 20px 0;
         }
 
-        .photo-frame {
-            width: 100%;
-            height: 280px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            display: none; 
-            position: relative;
+        /* ===== ШАПКА ===== */
+        header {
+            display: flex;
+            align-items: center;
+            padding: 20px 40px;
+            background: #000;
+            border-bottom: 2px solid #222;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            display: block;
         }
-        
-        .slider-container {
-            display: none;
-            position: relative;
-            width: 100%;
-            height: 280px;
-            border-radius: 15px;
-            overflow: hidden;
+
+        /* ===== БЛОК ЛАУНЧЕРА ===== */
+        .launcher-section {
+            max-width: 1100px;
+            margin: 60px auto 20px;
+            padding: 0 40px;
+            text-align: left; /* Выровнено по левому краю */
+        }
+
+        .launcher-title {
+            font-size: 32px;
+            color: #fff;
             margin-bottom: 10px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-            cursor: pointer;
+            letter-spacing: 1px;
         }
-        .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 0.6s ease-in-out;
-        }
-        .slide.active {
-            opacity: 1;
-        }
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .slider-hint {
-            font-size: 0.85rem;
+
+        .launcher-subtitle {
             color: #888;
-            margin-bottom: 15px;
-            display: none;
+            font-size: 16px;
+            margin-bottom: 30px;
         }
 
-        .icon {
-            font-size: 3.5rem;
-            margin-bottom: 10px;
+        .launcher-buttons {
+            display: flex;
+            justify-content: flex-start; /* Кнопки слева */
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-launcher {
             display: inline-block;
-            animation: heartBeat 1.4s infinite;
-        }
-        @keyframes heartBeat {
-            0% { transform: scale(1); }
-            14% { transform: scale(1.1); }
-            28% { transform: scale(1); }
-            42% { transform: scale(1.1); }
-            70% { transform: scale(1); }
+            padding: 16px 40px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: not-allowed; /* Курсор запрещен */
+            pointer-events: none; /* Не кликается */
         }
 
-        h1 {
-            color: #d81b60;
-            font-size: 1.4rem;
-            margin-bottom: 12px;
-        }
-        p {
+        /* Лаунчер теперь выглядит как неактивная кнопка */
+        .btn-launcher-download {
+            background: #1a1a1a;
             color: #555;
-            font-size: 1rem;
+            border: 2px solid #333;
+        }
+
+        .btn-launcher-soon {
+            background: #1a1a1a;
+            color: #555;
+            border: 2px solid #333;
+        }
+
+        /* ===== БИБЛИОТЕКА (ВЫРАВНИВАНИЕ СЛЕВА) ===== */
+        .library-section {
+            max-width: 1100px;
+            margin: 60px auto 0;
+            padding: 0 40px;
+        }
+
+        .library-title {
+            font-size: 32px;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .library-subtitle {
+            color: #888;
+            margin-bottom: 40px;
+            font-size: 16px;
+        }
+
+        /* Сетка теперь идет слева направо */
+        .games-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            padding-bottom: 80px;
+        }
+
+        .game-card {
+            background: #0d0d0d;
+            border: 1px solid #222;
+            border-radius: 20px;
+            overflow: hidden;
+            color: #fff;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            width: calc(33.333% - 17px); /* 3 игры в ряд */
+            min-width: 280px;
+        }
+
+        .game-card.active:hover {
+            transform: translateY(-5px);
+            border-color: #fff;
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .game-cover {
+            width: 100%;
+            height: 180px;
+            background: #111;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .game-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ===== БЕЙДЖИ ===== */
+        .demo-badge {
+            display: inline-block;
+            background: #00ff66;
+            color: #000;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            margin-left: 8px;
+            vertical-align: middle;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.5);
+        }
+
+        .game-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .game-info p {
+            color: #aaa;
+            font-size: 14px;
             line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .btn {
+            margin-top: 15px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            text-align: center;
+            transition: 0.3s;
+            border: 2px solid #fff;
+            display: block;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+        }
+
+        .game-card.active:hover .btn-primary {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-details {
+            background: #000;
+            color: #fff;
+            border-color: #fff;
+        }
+
+        .btn-details:hover {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn + .btn {
+            margin-top: 10px;
+        }
+
+        /* ===== ПЛАНИРУЕМЫЕ ПРОЕКТЫ ===== */
+        .planned-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 40px 80px;
+            text-align: left;
+        }
+
+        .planned-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .planned-subtitle {
+            color: #888;
+            font-size: 15px;
+            margin-bottom: 40px;
+        }
+
+        .planned-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        .planned-card {
+            background: #0d0d0d;
+            border: 1px dashed #333;
+            border-radius: 20px;
+            padding: 30px 25px;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            width: calc(50% - 13px); /* 2 проекта в ряд */
+            min-width: 300px;
+        }
+
+        .planned-card:hover {
+            border-color: #888;
+            border-style: solid;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 255, 255, 0.08);
+        }
+
+        .planned-badge {
+            display: inline-block;
+            align-self: flex-start;
+            background: #1a1a1a;
+            color: #888;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 5px 12px;
+            border-radius: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+        }
+
+        .planned-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+
+        .planned-card p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.6;
+            flex-grow: 1;
             margin-bottom: 20px;
         }
 
-        .btn-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            position: relative;
-            height: 55px;
-            margin-bottom: 10px;
-        }
-        .btn {
-            background: linear-gradient(45deg, #ff4b72 0%, #ff758c 100%);
-            color: white;
-            border: none;
-            padding: 0 25px;
-            height: 48px;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 5px 15px rgba(255, 75, 110, 0.3);
-            z-index: 12;
-            white-space: nowrap;
-        }
-        
-        #btn-no {
-            background: #999;
-            box-shadow: none;
-            transition: top 0.2s ease, left 0.2s ease;
-        }
-
-        .counter-box {
-            display: none;
-            background: #fff0f3;
-            border: 1px solid #ffccd5;
-            border-radius: 15px;
-            padding: 15px;
-            margin: 15px 0;
-            animation: fadeIn 1s ease forwards;
-        }
-        .counter-number {
-            font-size: 2rem;
-            color: #ff4b72;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .counter-label {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .options-container {
-            display: none;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px dashed #ffb3c1;
-            text-align: left;
-            animation: fadeIn 1s ease forwards;
-        }
-        .options-title {
-            font-size: 0.95rem;
-            color: #d81b60;
-            font-weight: bold;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .option-badge {
-            background: #fff0f3;
-            border: 1px solid #ffccd5;
-            border-radius: 12px;
-            padding: 10px;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #444;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .option-badge:active, .option-badge.selected {
-            background: #ff4b72;
-            color: white;
-            border-color: #ff4b72;
-        }
-
-        .timeline-container {
-            display: none;
-            margin-top: 20px;
+        /* ===== СБОР СРЕДСТВ ===== */
+        .fund-block {
+            margin-top: auto;
             padding-top: 20px;
-            border-top: 1px dashed #ffb3c1;
-            text-align: left;
-            animation: fadeIn 1s ease forwards;
+            border-top: 1px dashed #333;
         }
-        .timeline-item {
-            position: relative;
-            padding-left: 25px;
+
+        .fund-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .fund-label .fund-amount {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .fund-progress {
+            width: 100%;
+            height: 12px;
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #333;
             margin-bottom: 15px;
         }
-        .timeline-item::before {
-            content: '✨';
-            position: absolute;
-            left: 0;
-            top: 2px;
-            font-size: 0.9rem;
+
+        .fund-progress-fill {
+            height: 100%;
+            width: 15%;
+            background: linear-gradient(90deg, #00ff66, #00cc55);
+            border-radius: 20px;
+            transition: width 0.6s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.5);
         }
-        .timeline-date {
+
+        .btn-donate {
+            display: block;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #000;
+            color: #fff;
+            border: 2px solid #00ff66;
             font-weight: bold;
-            color: #d81b60;
-            font-size: 0.9rem;
-            margin-bottom: 2px;
+            font-size: 15px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: 0.3s;
         }
-        .timeline-content {
-            font-size: 0.9rem;
+
+        .btn-donate:hover {
+            background: #00ff66;
+            color: #000;
+            box-shadow: 0 0 25px rgba(0, 255, 102, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
             color: #555;
-            line-height: 1.4;
+            border-top: 1px solid #222;
         }
 
-        .secret-message {
-            display: none;
-            color: #c2185b;
-            font-size: 1.15rem;
-            font-weight: bold;
-            line-height: 1.4;
-            margin-bottom: 15px;
-            animation: fadeIn 1s ease forwards;
+        @media (max-width: 900px) {
+            .game-card { width: calc(50% - 13px); }
+            .planned-card { width: 100%; }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .falling-heart {
-            position: absolute;
-            color: #ff4b72;
-            pointer-events: none;
-            z-index: 1;
-            animation: fall linear forwards;
-        }
-        @keyframes fall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(105vh) rotate(360deg); opacity: 0; }
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .logo img { height: 45px; }
+            .launcher-section, .library-section, .planned-section { padding: 0 20px; }
+            .launcher-title, .library-title, .planned-title { font-size: 24px; }
+            .game-card { width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="card" id="main-card">
-        <!-- Шаг 1 -->
-        <div class="photo-frame" id="photo-1" style="display: block;">
-            <img src="photo1.jpg" alt="Фото 1">
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="Логотип">
         </div>
-        
-        <!-- Шаг 2 -->
-        <div class="photo-frame" id="photo-2">
-            <img src="photo2.jpg" alt="Фото 2">
-        </div>
+    </header>
 
-        <!-- Шаг 3: Галерея -->
-        <div class="slider-container" id="love-slider" onclick="nextSlide()">
-            <div class="slide active"><img src="photo1.jpg" alt="Мы 1"></div>
-            <div class="slide"><img src="photo2.jpg" alt="Мы 2"></div>
-            <div class="slide"><img src="photo3.jpg" alt="Мы 3"></div>
-            <div class="slide"><img src="photo4.jpg" alt="Мы 4"></div>
+    <!-- ===== БЛОК ЛАУНЧЕРА ===== -->
+    <section class="launcher-section">
+        <h2 class="launcher-title">Лаунчер HYESOSPROJECT</h2>
+        <p class="launcher-subtitle">Скоро вы сможете установить все игры в один клик</p>
+        <div class="launcher-buttons">
+            <!-- Кнопка теперь неактивна -->
+            <span class="btn-launcher btn-launcher-download">
+                ⬇ Скачать лаунчер
+            </span>
+            
+            <span class="btn-launcher btn-launcher-soon">
+                Скоро...
+            </span>
         </div>
-        <div class="slider-hint" id="slider-text">Нажимай на фото, чтобы листать нашу историю 📸</div>
+    </section>
 
-        <span class="icon" id="card-icon">❤️</span>
-        <h1 id="card-title">У меня к тебе вопрос...</h1>
-        <p id="card-text">Ты же знаешь, как сильно ты мне дорога? Ответишь мне взаимностью?</p>
-        
-        <div class="btn-container" id="controls">
-            <button class="btn" id="btn-yes" onclick="nextStep()">Да!</button>
-            <button class="btn" id="btn-no" onmouseover="runAway()" onclick="runAway()" ontouchstart="runAway()">Нет</button>
-        </div>
-        
-        <!-- Шаг 3: Контент -->
-        <div class="secret-message" id="secret">
-            Ура! Я очень сильно тебя люблю! ❤️<br>
-            Ты — лучшее, что со мной случалось 🥰
-        </div>
+    <!-- ===== БИБЛИОТЕКА ===== -->
+    <section class="library-section">
+        <h1 class="library-title">Библиотека игр</h1>
+        <p class="library-subtitle">Выбери игру и нажми «Скачать»</p>
 
-        <div class="counter-box" id="counter-block">
-            <div class="counter-number" id="days-count">0</div>
-            <div class="counter-label" id="days-label">дней мы счастливы вместе</div>
-        </div>
+        <div class="games-grid">
 
-        <div class="options-container" id="options-block">
-            <div class="options-title">Выбери, как проведем время:</div>
-            <div class="option-badge" onclick="selectOption(this)">🎬 Устроим киномарафон под пледом</div>
-            <div class="option-badge" onclick="selectOption(this)">🍕 Приготовим что-то вкусное вместе</div>
-            <div class="option-badge" onclick="withYou(this)">✨ Главное вместе, формат за мной!</div>
-        </div>
+            <!-- ===== ИГРА 1 ===== -->
+            <div class="game-card active">
+                <div class="game-cover">
+                    <img src="game1-cover.jpg" alt="HYESOSIKI3D">
+                </div>
+                <div class="game-info">
+                    <h3>HYESOSIKI3D</h3>
+                    <p>Классика.</p>
 
-        <div class="timeline-container" id="timeline-block">
-            <div class="options-title" style="margin-bottom:15px;">Наша история 📖</div>
-            <div class="timeline-item">
-                <div class="timeline-date">28 августа 2023</div>
-                <div class="timeline-content">День, когда началась наша прекрасная история ✨</div>
+                    <a href="game1/details.html" class="btn btn-primary">Скачать</a>
+                    <a href="game1/details.html" class="btn btn-details">Подробности</a>
+                </div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-date">Романтичный момент</div>
-                <div class="timeline-content">Как же круто мы катались на самокатах под дождем! 🛴🌧️</div>
+
+            <!-- ===== ИГРА 2 (БЕЗ UPDATE) ===== -->
+            <div class="game-card active">
+                <div class="game-cover">
+                    <img src="game2-cover.jpg" alt="HYESOSIKI3D: The Missing Person">
+                </div>
+                <div class="game-info">
+                    <h3>HYESOSIKI3D: The Missing Person</h3>
+                    <p>Анна Павловна ехала по ночной трассе, когда всё пошло не так. Пенисбайк всмятку, связь не ловит, вокруг ни души.</p>
+
+                    <a href="game2/details.html" class="btn btn-primary">Скачать</a>
+                    <a href="game2/details.html" class="btn btn-details">Подробности</a>
+                </div>
             </div>
+
+            <!-- ===== ИГРА 3 (DEMO) ===== -->
+            <div class="game-card active">
+                <div class="game-cover">
+                    <img src="game3-cover.jpg" alt="ПИТЕР прошлое Виталика DEMO">
+                </div>
+                <div class="game-info">
+                    <h3>ПИТЕР прошлое Виталика <span class="demo-badge">DEMO</span></h3>
+                    <p>Пошаговая РПГ стратегия в суровой России нашего времени, в которой вам предстоит побывать в шкуре обычного школьника</p>
+
+                    <a href="game3/details.html" class="btn btn-primary">Скачать</a>
+                    <a href="game3/details.html" class="btn btn-details">Подробности</a>
+                </div>
+            </div>
+
         </div>
-    </div>
+    </section>
 
-    <audio id="bg-music" src="music.mp3" preload="auto" loop></audio>
+    <!-- ===== ПЛАНИРУЕМЫЕ ПРОЕКТЫ ===== -->
+    <section class="planned-section">
+        <h2 class="planned-title">Планируемые проекты</h2>
+        <p class="planned-subtitle">Что нас ждёт в будущем</p>
 
-    <script>
-        let currentStep = 1;
-        let slideIndex = 0;
+        <div class="planned-grid">
 
-        function runAway() {
-            const btnNo = document.getElementById('btn-no');
-            btnNo.style.position = 'fixed';
-            const padding = 60;
-            const randomX = Math.random() * (window.innerWidth - btnNo.offsetWidth - padding) + padding / 2;
-            const randomY = Math.random() * (window.innerHeight - btnNo.offsetHeight - padding) + padding / 2;
-            btnNo.style.left = randomX + 'px';
-            btnNo.style.top = randomY + 'px';
-        }
+            <!-- ПРОЕКТ 1 -->
+            <div class="planned-card">
+                <span class="planned-badge">В РАЗРАБОТКЕ</span>
+                <h3>HYESOSIKI 3D CO-OP DLS</h3>
+                <p>DLS к игре HYESOSIKI 3D The Missing Person. Альтернативная сюжетка для 4-х игроков</p>
 
-        function updateCounter() {
-            const startDate = new Date('2023-08-28');
-            const today = new Date();
-            const timeDiff = today.getTime() - startDate.getTime();
-            const days = Math.floor(timeDiff / (1000 * 3600 * 24));
-            
-            document.getElementById('days-count').innerText = days;
-            
-            // Склонение слова "день"
-            let label = "дней мы счастливы вместе";
-            const lastDigit = days % 10;
-            const lastTwoDigits = days % 100;
-            
-            if (lastDigit === 1 && lastTwoDigits !== 11) {
-                label = "день мы счастливы вместе";
-            } else if ([2, 3, 4].includes(lastDigit) && ![12, 13, 14].includes(lastTwoDigits)) {
-                label = "дня мы счастливы вместе";
-            }
-            document.getElementById('days-label').innerText = label;
-        }
+                <div class="fund-block">
+                    <div class="fund-label">
+                        <span>Собрано:</span>
+                        <span class="fund-amount">150 ₽ из 1000 ₽</span>
+                    </div>
+                    <div class="fund-progress">
+                        <div class="fund-progress-fill"></div>
+                    </div>
+                    <a href="https://tips.yandex.ru/guest/payment/9476382" class="btn-donate" target="_blank" rel="noopener">💚 Задонатить</a>
+                </div>
+            </div>
 
-        function nextStep() {
-            if (currentStep === 1) {
-                currentStep = 2;
-                document.getElementById('btn-no').style.display = 'none';
-                document.getElementById('photo-1').style.display = 'none';
-                document.getElementById('photo-2').style.display = 'block';
-                
-                document.getElementById('card-title').innerText = "И еще кое-что... ✨";
-                document.getElementById('card-text').innerText = "Ты готова провести со мной этот вечер?";
-                document.getElementById('btn-yes').innerText = "Конечно да! 😍";
-                
-            } else if (currentStep === 2) {
-                currentStep = 3;
-                
-                const music = document.getElementById('bg-music');
-                music.volume = 0.35;
-                music.play().catch(err => console.log("Музыка активирована"));
+            <!-- ПРОЕКТ 2 -->
+            <div class="planned-card">
+                <span class="planned-badge">В планах</span>
+                <h3>HYESOSIKI ONLINE</h3>
+                <p>Шутер от 1 лица с возможностью кататься на пеннис байке, игра от 2-х до 7 игроков</p>
+            </div>
 
-                document.getElementById('controls').style.display = 'none';
-                document.getElementById('card-text').style.display = 'none';
-                document.getElementById('card-icon').style.display = 'none';
-                document.getElementById('photo-2').style.display = 'none';
-                
-                document.getElementById('love-slider').style.display = 'block';
-                document.getElementById('slider-text').style.display = 'block';
-                
-                document.getElementById('card-title').innerText = "Моё сердце принадлежит тебе!";
-                document.getElementById('secret').style.display = 'block';
-                
-                updateCounter();
-                document.getElementById('counter-block').style.display = 'block';
-                document.getElementById('options-block').style.display = 'block';
-                document.getElementById('timeline-block').style.display = 'block';
-                
-                startHeartAnimation();
-            }
-        }
+        </div>
+    </section>
 
-        function nextSlide() {
-            const slides = document.querySelectorAll('.slide');
-            slides[slideIndex].classList.remove('active');
-            slideIndex = (slideIndex + 1) % slides.length;
-            slides[slideIndex].classList.add('active');
-        }
+    <footer>
+        © 2026 HYESOSPROJECT Часть этой программы НЕ распространяется по лицензии © 2026-2026 Все права не защищены. Все товарные знаки являются собственностью их владельцев 
+    </footer>
 
-        function selectOption(element) {
-            document.querySelectorAll('.option-badge').forEach(b => b.classList.remove('selected'));
-            element.classList.add('selected');
-        }
-        
-        function withYou(element) {
-            selectOption(element);
-            element.innerText = "❤️ Жду с нетерпением!";
-        }
-
-        function startHeartAnimation() {
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('falling-heart');
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.fontSize = Math.random() * 15 + 15 + 'px';
-                heart.style.animationDuration = Math.random() * 2.5 + 2.5 + 's';
-                heart.style.opacity = Math.random() * 0.4 + 0.6;
-                document.body.appendChild(heart);
-                setTimeout(() => { heart.remove(); }, 5000);
-            }, 200); 
-        }
-    </script>
 </body>
 </html>
